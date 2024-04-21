@@ -1,5 +1,5 @@
 import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
-import Config from 'react-native-config';
+import Config from 'react-native-config'; // Local env
 import {Alert} from 'react-native';
 
 const BASE_URL = 'https://gorest.co.in/';
