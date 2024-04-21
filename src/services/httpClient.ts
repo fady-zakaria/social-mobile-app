@@ -1,20 +1,33 @@
-import axios, {AxiosRequestConfig} from 'axios';
-
-const BASE_URL = 'https://gorest.co.in/';
+import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
+import Config from 'react-native-config';
+import {Alert} from 'react-native';
 
 export const httpClient = axios.create({
-  baseURL: BASE_URL,
+  baseURL: Config.BASE_URL,
 });
 
 const defaultConfig = (config: AxiosRequestConfig) => {
   config.headers = {
     'Content-Type': 'application/json',
-    // Authorization: 'Client-ID G0xbK_zRq65nfgIMhCBir0SMuBQ5UmS7IVybMENIoZ4',
-    // 'Accept-Version': 'v1',
+    Authorization: `Bearer ${Config.API_TOKEN}`,
   };
   return config;
 };
 
-httpClient.interceptors.request.use(async config => {
+httpClient.interceptors.request.use(config => {
   return defaultConfig(config);
 });
+
+const errorInterceptor = (error: {message: string | undefined}) => {
+  Alert.alert('Error', error.message);
+  return Promise.reject(error);
+};
+
+const responseInterseptor = (respone: AxiosResponse<any, any>) => {
+  return Promise.resolve(respone);
+};
+
+httpClient.interceptors.response.use(
+  response => responseInterseptor(response),
+  error => errorInterceptor(error),
+);

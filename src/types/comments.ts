@@ -1,6 +1,6 @@
-export type comments = Comment[];
+export type comments = CommentType[];
 
-export interface Comment {
+export interface CommentType {
   id: number;
   post_id: number;
   name: string;

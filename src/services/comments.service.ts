@@ -5,7 +5,11 @@ import {httpClient} from './httpClient';
 //     .get(`/public/v2/posts/${postId}/comments?page=${page}&per_page=${maxRecs}`)
 //     .then(response => response);
 
-const getComments = async (postId, page, maxRecs) => {
+const getComments = async (
+  postId: string,
+  page: number = 1,
+  maxRecs: number = 3,
+) => {
   const {data} = await httpClient.get(
     `/public/v2/posts/${postId}/comments?page=${page}&per_page=${maxRecs}`,
   );

@@ -1,4 +1,4 @@
-export type posts = PostType[];
+export type posts = PostType[] | [];
 
 export interface PostType {
   id: number;

@@ -1,16 +1,13 @@
 import {useInfiniteQuery} from '@tanstack/react-query';
 import getPosts from '../services/posts.service';
-// import {Alert} from 'react-native';
 
 export const useGetPosts = () => {
   const query = useInfiniteQuery({
-    initialPageParam: 1,
     queryKey: ['posts'],
-    queryFn: async pageParam => await getPosts(pageParam, 20),
+    queryFn: (pageParam = 1) => getPosts(pageParam, 2),
     getNextPageParam: (lastPage, allPages) => allPages.length + 1,
-    getPreviousPageParam: (firstPage, allPages) => allPages.length - 1,
   });
-  return {
-    ...query,
-  };
+  return {...query};
 };
+
+// getPreviousPageParam: (firstPage, allPages) => allPages.length - 1,
