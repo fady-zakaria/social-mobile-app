@@ -8,11 +8,7 @@ const styles = StyleSheet.create({
   },
   commentContainer: {
     flexDirection: 'row',
-    // backgroundColor: Colors.white,
     marginVertical: 10,
-    // borderColor: '#000000',
-    // borderWidth: 4,
-    // padding: 10,
     width: '80%',
   },
   contentContainer: {

@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 6,
     alignItems: 'center',
-  }
+  },
 });
 
 export default styles;

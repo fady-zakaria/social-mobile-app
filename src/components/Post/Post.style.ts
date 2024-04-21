@@ -5,8 +5,6 @@ const styles = StyleSheet.create({
   postContainer: {
     backgroundColor: Colors.white,
     marginVertical: 5,
-    // borderColor: '#000000',
-    // borderWidth: 4,
     padding: 10,
   },
 });

@@ -9,11 +9,11 @@ type props = {
 
 const queryClient = new QueryClient();
 
-// if (__DEV__) {
-//   import('react-query-native-devtools').then(({addPlugin}) => {
-//     addPlugin({queryClient});
-//   });
-// }
+if (__DEV__) {
+  import('react-query-native-devtools').then(({addPlugin}) => {
+    addPlugin({queryClient});
+  });
+}
 
 const ProvidersWrapper = ({children}: props) => {
   return (
