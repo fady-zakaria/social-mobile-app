@@ -5,6 +5,7 @@ import styles from './Home.style';
 import {logo} from '../../utils/imgs';
 import {useGetPosts} from '../../hooks/useGetPosts';
 import {posts} from '../../types/posts';
+import PostSkeleton from '../../components/Post/PostSkeleton/Post.skeleton';
 
 interface Iprops {}
 
@@ -23,15 +24,12 @@ const Home: FC<Iprops> = ({}) => {
   useEffect(() => {
     let newArray: posts = [];
     data?.pages.map(item => {
-      newArray = [...newArray, ...item];
+      if (item) {
+        newArray = [...newArray, ...item.data];
+      }
     });
     setQueryRes(newArray);
   }, [data]);
-
-  // const renderItem = item => {
-  //   console.log('renderItem', item);
-  //   return <Post post={item} />;
-  // };
 
   return (
     <View>
@@ -39,7 +37,7 @@ const Home: FC<Iprops> = ({}) => {
         <Image source={logo} style={styles.logoStyle} />
       </View>
       {isRefetching && isLoading ? (
-        <ActivityIndicator size={50} color={'black'} />
+        <PostSkeleton />
       ) : (
         <FlatList
           data={queryRes}

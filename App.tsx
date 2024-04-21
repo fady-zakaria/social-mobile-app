@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
-import {StatusBar, StyleSheet, View, SafeAreaView} from 'react-native';
+import React from 'react';
+import {StatusBar, StyleSheet, SafeAreaView} from 'react-native';
 import Navigation from './src/navigations/Navigation';
 import ProvidersWrapper from './src/Providers/ProvidersWrapper';
-import SplashScreen from 'react-native-splash-screen';
+// import SplashScreen from 'react-native-splash-screen';
 
 function App(): React.JSX.Element {
   // useEffect(() => {

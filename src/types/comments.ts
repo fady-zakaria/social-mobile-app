@@ -1,4 +1,4 @@
-export type comments = CommentType[];
+export type comments = CommentType[] | [];
 
 export interface CommentType {
   id: number;

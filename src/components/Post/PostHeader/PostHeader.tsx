@@ -1,26 +1,30 @@
-import {View, Text} from 'react-native';
+import {View, Text, Pressable} from 'react-native';
 import React, {FC} from 'react';
 import styles from './PostHeader.style';
 import {Avatar} from '@rneui/themed';
-import {
-  useNavigationContainerRef,
-  useNavigationState,
-} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Colors} from '../../../utils/Colors';
+import Fontisto from 'react-native-vector-icons/Fontisto';
+
 interface Iprops {
-  // navigation: NativeStackNavigationProp;
+  backButton: boolean;
 }
 
-const PostHeader: FC<Iprops> = ({navigation}) => {
-  // const navigationRef = useNavigationContainerRef();
-  // const route = navigationRef.getCurrentRoute()?.name;
+const PostHeader: FC<Iprops> = ({backButton = false}) => {
+  const navigation = useNavigation();
 
-  // const state = useNavigationState(state => state);
-
-  // console.log('nav route', route);
-  // console.log('nav', state);
   return (
     <View style={styles.postHeaderContainer}>
+      {backButton && (
+        <Pressable onPress={() => navigation.goBack()} style={styles.backBtn}>
+          <MaterialCommunityIcons
+            name="chevron-left"
+            color={Colors.textGrey}
+            size={25}
+          />
+        </Pressable>
+      )}
       <Avatar
         icon={{name: 'user', type: 'entypo'}}
         size={38}
@@ -28,8 +32,11 @@ const PostHeader: FC<Iprops> = ({navigation}) => {
         containerStyle={styles.avatarContainer}
       />
       <View style={styles.headerTextContainer}>
-        <Text style={styles.postHeaderText}>Ahmed</Text>
-        <Text style={styles.timeText}>one hour ago</Text>
+        <Text style={styles.postHeaderText}>Anonymous User</Text>
+        <View style={styles.timeContainer}>
+          <Text style={styles.timeText}>1hr</Text>
+          <Fontisto name="world-o" color={Colors.textGrey} size={10} />
+        </View>
       </View>
     </View>
   );

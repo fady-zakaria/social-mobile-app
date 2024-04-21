@@ -12,21 +12,22 @@ import {setPost} from '../../redux/features/PostsSlice';
 
 interface Iprops {
   post: PostType;
+  backButton?: boolean;
 }
 
-const Post: FC<Iprops> = ({post}) => {
+const Post: FC<Iprops> = ({post, backButton = false}) => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const postPressHandler = () => {
     dispatch(setPost(post));
     navigation.navigate(MainStackScreenNames.postDetails);
   };
 
-  const navigation = useNavigation();
   return (
     <Pressable onPress={() => postPressHandler()}>
       <View style={styles.postContainer}>
-        <PostHeader />
+        <PostHeader backButton={backButton} />
         <PostContent postTitle={post.title} postBody={post.body} />
         <PostFooter />
       </View>

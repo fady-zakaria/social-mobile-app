@@ -5,10 +5,14 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Colors} from '../../../utils/Colors';
 import {heart, like, shock} from '../../../utils/imgs';
+import MainStackScreenNames from '../../../navigations/stacks/MainStack/MainStackScreenNames';
+import {useNavigation} from '@react-navigation/native';
 
 interface Iprops {}
 
 const PostFooter: FC<Iprops> = ({}) => {
+  const navigation = useNavigation();
+
   const [noOFlikes, setNoOFLikes] = useState(50);
   const [liked, setLiked] = useState(false);
 
@@ -45,7 +49,9 @@ const PostFooter: FC<Iprops> = ({}) => {
             </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => {}} style={styles.actionContainer}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(MainStackScreenNames.postDetails)}
+          style={styles.actionContainer}>
           <View style={styles.actionWrapper}>
             <Ionicons name="chatbox-outline" size={24} />
             <Text style={styles.actionTitle}>Comment</Text>

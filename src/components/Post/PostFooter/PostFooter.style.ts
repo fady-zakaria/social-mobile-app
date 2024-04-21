@@ -4,17 +4,13 @@ import {Colors} from '../../../utils/Colors';
 const styles = StyleSheet.create({
   footerContainer: {
     flexDirection: 'column',
-    // justifyContent: 'space-between',
-    // alignItems: 'center',
-    // padding: 5,
   },
   reactionsContainer: {
     flexDirection: 'row',
-    // alignItems: 'center',
     marginStart: 5,
     borderBottomColor: Colors.lightgrey,
     borderBottomWidth: 1,
-    paddingBottom: 15,
+    paddingBottom: 10,
   },
   reactionIcon: {
     height: 20,
@@ -29,14 +25,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginTop: 10,
   },
   actionContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-    // backgroundColor: Colors.lightgrey,
-    // borderColor: '#000000',
-    // borderTopWidth: 1,
   },
   actionWrapper: {
     flexDirection: 'row',

@@ -1,29 +1,16 @@
-import {
-  View,
-  Pressable,
-  FlatList,
-  ActivityIndicator,
-  ScrollView,
-  Text,
-} from 'react-native';
+import {View, FlatList, ActivityIndicator, Text} from 'react-native';
 import React, {FC, useEffect, useState} from 'react';
 import Post from '../../components/Post/Post';
-import {dummydata} from '../../dummyData';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useNavigation} from '@react-navigation/native';
 import Comment from '../../components/Comment/Comment';
 import styles from './PostDetails.style';
 import {comments} from '../../types/comments';
 import {useGetComments} from '../../hooks/useGetComments';
-import {useSelector} from 'react-redux';
+import {useAppSelector} from '../../redux/store';
 
 interface Iprops {}
 
 const PostDetails: FC<Iprops> = ({}) => {
-  const navigation = useNavigation();
-
-  const {post} = useSelector(state => state.postsState);
-  console.log('Post Details', post.id);
+  const {post} = useAppSelector(state => state.postsState);
 
   const [queryRes, setQueryRes] = useState<comments>([]);
 
@@ -34,12 +21,15 @@ const PostDetails: FC<Iprops> = ({}) => {
     fetchNextPage,
     isFetchingNextPage,
     isLoading,
-  } = useGetComments(post.id);
+  } = useGetComments(post?.id);
 
   useEffect(() => {
     let newArray: comments = [];
     data?.pages.map(item => {
-      newArray = [...newArray, ...item];
+      console.log(item, 'item');
+      if (item) {
+        newArray = [...newArray, ...item.data];
+      }
     });
     setQueryRes(newArray);
   }, [data]);
@@ -48,25 +38,14 @@ const PostDetails: FC<Iprops> = ({}) => {
 
   const emptyList = () => {
     return (
-      <View>
+      <View style={styles.emptyContainer}>
         <Text>No Comments</Text>
       </View>
     );
   };
 
   const HeaderList = () => {
-    return (
-      <>
-        <Pressable onPress={() => navigation.goBack()}>
-          <MaterialCommunityIcons
-            name="chevron-left"
-            color={'blue'}
-            size={30}
-          />
-        </Pressable>
-        <Post post={post} />
-      </>
-    );
+    return <Post post={post} backButton={true} />;
   };
 
   return (
