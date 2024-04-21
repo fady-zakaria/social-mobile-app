@@ -2,8 +2,11 @@ import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 import Config from 'react-native-config';
 import {Alert} from 'react-native';
 
+const BASE_URL = 'https://gorest.co.in/';
+
 export const httpClient = axios.create({
-  baseURL: Config.BASE_URL,
+  // baseURL: Config.BASE_URL,
+  baseURL: BASE_URL,
 });
 
 const defaultConfig = (config: AxiosRequestConfig) => {
