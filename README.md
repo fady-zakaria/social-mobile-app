@@ -1,6 +1,6 @@
 # Social Media React Native App 
 
-### Demo
+### Video Demo
 
 Drive Link: https://drive.google.com/drive/folders/1hYBmdvD25VWvzmk6N4FusZAJeOv0z0ms?usp=sharing 
 
