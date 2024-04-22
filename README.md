@@ -1,3 +1,20 @@
+# Social Media React Native App 
+
+### Demo
+
+Drive Link: https://drive.google.com/drive/folders/1hYBmdvD25VWvzmk6N4FusZAJeOv0z0ms?usp=sharing 
+
+### Screenshots
+
+<img src="https://github.com/fady-zakaria/social-mobile-app/assets/77215538/9a905437-938a-4c39-8b9b-0de2669dc43d" width="200" height="400" >
+
+<img src="https://github.com/fady-zakaria/social-mobile-app/assets/77215538/3eabe5b4-7459-45e2-937f-b8f1c53b1196" width="200" height="400" >
+
+<img src="https://github.com/fady-zakaria/social-mobile-app/assets/77215538/50926ad0-d21a-46f8-9dae-02650f78f844" width="200" height="400" >
+
+<br/>
+<br/>
+   
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
