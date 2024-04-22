@@ -29,7 +29,7 @@ const Post: FC<Iprops> = ({post, backButton = false}) => {
       <View style={styles.postContainer}>
         <PostHeader backButton={backButton} />
         <PostContent postTitle={post.title} postBody={post.body} />
-        <PostFooter />
+        <PostFooter post={post} />
       </View>
     </Pressable>
   );

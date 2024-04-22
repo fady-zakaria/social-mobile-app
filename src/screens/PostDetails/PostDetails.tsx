@@ -1,4 +1,4 @@
-import {View, FlatList, ActivityIndicator, Text} from 'react-native';
+import {View, FlatList, Text} from 'react-native';
 import React, {FC, useEffect, useState} from 'react';
 import Post from '../../components/Post/Post';
 import Comment from '../../components/Comment/Comment';
@@ -6,6 +6,7 @@ import styles from './PostDetails.style';
 import {comments} from '../../types/comments';
 import {useGetComments} from '../../hooks/useGetComments';
 import {useAppSelector} from '../../redux/store';
+import Loader from '../../components/Loader/Loader';
 
 interface Iprops {}
 
@@ -26,15 +27,12 @@ const PostDetails: FC<Iprops> = ({}) => {
   useEffect(() => {
     let newArray: comments = [];
     data?.pages.map(item => {
-      console.log(item, 'item');
       if (item) {
         newArray = [...newArray, ...item.data];
       }
     });
     setQueryRes(newArray);
   }, [data]);
-
-  console.log('comments', data);
 
   const emptyList = () => {
     return (
@@ -50,8 +48,8 @@ const PostDetails: FC<Iprops> = ({}) => {
 
   return (
     <View style={styles.commentContainer}>
-      {isRefetching && isLoading ? (
-        <ActivityIndicator size={50} color={'black'} />
+      {isRefetching || isLoading ? (
+        <Loader />
       ) : (
         <FlatList
           data={queryRes}
@@ -66,11 +64,7 @@ const PostDetails: FC<Iprops> = ({}) => {
           ListHeaderComponent={HeaderList()}
         />
       )}
-      {isFetchingNextPage && (
-        <View>
-          <ActivityIndicator size={30} color={'black'} />
-        </View>
-      )}
+      {isFetchingNextPage && <Loader />}
     </View>
   );
 };

@@ -1,11 +1,11 @@
 import React, {FC, useEffect, useState} from 'react';
 import Post from '../../components/Post/Post';
-import {ActivityIndicator, FlatList, Image, View} from 'react-native';
+import {FlatList, Image, View} from 'react-native';
 import styles from './Home.style';
 import {logo} from '../../utils/imgs';
 import {useGetPosts} from '../../hooks/useGetPosts';
 import {posts} from '../../types/posts';
-import PostSkeleton from '../../components/Post/PostSkeleton/Post.skeleton';
+import Loader from '../../components/Loader/Loader';
 
 interface Iprops {}
 
@@ -25,7 +25,7 @@ const Home: FC<Iprops> = ({}) => {
     let newArray: posts = [];
     data?.pages.map(item => {
       if (item) {
-        newArray = [...newArray, ...item.data];
+        newArray = [...newArray, ...item?.data];
       }
     });
     setQueryRes(newArray);
@@ -36,8 +36,8 @@ const Home: FC<Iprops> = ({}) => {
       <View style={styles.logoContainer}>
         <Image source={logo} style={styles.logoStyle} />
       </View>
-      {isRefetching && isLoading ? (
-        <PostSkeleton />
+      {isRefetching || isLoading ? (
+        <Loader />
       ) : (
         <FlatList
           data={queryRes}
@@ -50,11 +50,7 @@ const Home: FC<Iprops> = ({}) => {
           refreshing={isRefetching}
         />
       )}
-      {isFetchingNextPage && (
-        <View>
-          <ActivityIndicator size={30} color={'black'} />
-        </View>
-      )}
+      {isFetchingNextPage && <Loader />}
     </View>
   );
 };

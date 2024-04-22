@@ -7,11 +7,17 @@ import {Colors} from '../../../utils/Colors';
 import {heart, like, shock} from '../../../utils/imgs';
 import MainStackScreenNames from '../../../navigations/stacks/MainStack/MainStackScreenNames';
 import {useNavigation} from '@react-navigation/native';
+import {setPost} from '../../../redux/features/PostsSlice';
+import {useDispatch} from 'react-redux';
+import {PostType} from '../../../types/posts';
 
-interface Iprops {}
+interface Iprops {
+  post: PostType;
+}
 
-const PostFooter: FC<Iprops> = ({}) => {
+const PostFooter: FC<Iprops> = ({post}) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const [noOFlikes, setNoOFLikes] = useState(50);
   const [liked, setLiked] = useState(false);
@@ -23,6 +29,11 @@ const PostFooter: FC<Iprops> = ({}) => {
       setNoOFLikes(noOFlikes + 1);
     }
     setLiked(!liked);
+  };
+
+  const commentHandler = () => {
+    dispatch(setPost(post));
+    navigation.navigate(MainStackScreenNames.postDetails);
   };
 
   return (
@@ -50,7 +61,7 @@ const PostFooter: FC<Iprops> = ({}) => {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate(MainStackScreenNames.postDetails)}
+          onPress={() => commentHandler()}
           style={styles.actionContainer}>
           <View style={styles.actionWrapper}>
             <Ionicons name="chatbox-outline" size={24} />
